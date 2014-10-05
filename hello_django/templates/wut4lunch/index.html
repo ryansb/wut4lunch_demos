@@ -1,0 +1,25 @@
+<html>
+<title>Wut 4 Lunch</title>
+<h2>What are people eating?</h2>
+
+<p>Wut4Lunch is the latest social network where you can tell all your friends
+about your noontime repast!</p>
+
+{% if lunches %}
+<ul>
+{% for lunch in lunches %}
+<li><strong>{{ lunch.submitter }}</strong> just ate <strong>{{ lunch.food }}</strong></li>
+{% endfor %}
+</ul>
+{% else %}
+<em>Nobody has eaten lunch, you must all be starving!</em>
+{% endif %}
+
+<h3>What are <em>YOU</em> eating?</h3>
+
+<form action="/newlunch" method="post">
+  {% csrf_token %}
+  {{ form.as_ul }}
+<input type="submit" value="I ate this!" />
+</form>
+</html>

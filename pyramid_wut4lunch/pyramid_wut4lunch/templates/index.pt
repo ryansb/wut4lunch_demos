@@ -1,0 +1,28 @@
+<html>
+<title>Wut 4 Lunch</title>
+<h2>What are people eating?</h2>
+
+<p>Wut4Lunch is the latest social network where you can tell all your friends
+about your noontime repast!</p>
+
+<div tal:condition="lunches">
+  <ul>
+    <div tal:repeat="lunch lunches" tal:omit-tag="">
+      <li tal:content="string:${lunch.submitter} just ate ${lunch.food}"/>
+    </div>
+  </ul>
+</div>
+<div tal:condition="not:lunches">
+  <em>Nobody has eaten lunch, you must all be starving!</em>
+</div>
+
+<h3>What are YOU eating?</h3>
+
+<form method="POST" action="/newlunch">
+  Name: ${form.text("submitter", size=40)}
+  <br/>
+  What did you eat? ${form.text("food", size=40)}
+  <br/>
+  <input type="submit" value="I ate this!" />
+</form>
+</html>
