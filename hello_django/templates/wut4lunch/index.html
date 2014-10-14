@@ -15,7 +15,7 @@ about your noontime repast!</p>
 
 <h3>What are <em>YOU</em> eating?</h3>
 
-<form action="/newlunch" method="post">
+<form action="{% url 'newlunch' %}" method="post">
   {% csrf_token %}
   {{ form.as_ul }}
 <input type="submit" value="I ate this!" />
