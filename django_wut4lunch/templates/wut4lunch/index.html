@@ -1,0 +1,23 @@
+<html>
+<title>Wut 4 Lunch</title>
+<h2>What are people eating?</h2>
+
+<p>Wut4Lunch is the latest social network where you can tell all your friends
+about your noontime repast!</p>
+
+<ul>
+{% for lunch in lunches %}
+<li><strong>{{ lunch.submitter }}</strong> just ate <strong>{{ lunch.food }}</strong></li>
+{% empty %}
+<em>Nobody has eaten lunch, you must all be starving!</em>
+{% endfor %}
+</ul>
+
+<h3>What are <em>YOU</em> eating?</h3>
+
+<form action="{% url 'newlunch' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_ul }}
+<input type="submit" value="I ate this!" />
+</form>
+</html>
